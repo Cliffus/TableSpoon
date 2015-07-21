@@ -10,6 +10,7 @@ public class Column implements SQLiteObject
     //TODO default value
     //TODO unique
     //TODO not null
+    //TODO CHECK (my_id BETWEEN 0 AND 100)
 
     private final String columnName;
     private DataType dataType;
