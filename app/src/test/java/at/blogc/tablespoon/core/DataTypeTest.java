@@ -18,7 +18,6 @@ public class DataTypeTest
         DataType dataType = DataType.fromClass(String.class);
         assertEquals(DataType.TEXT, dataType);
 
-
         // CharSequence
         dataType = DataType.fromClass(CharSequence.class);
         assertEquals(DataType.TEXT, dataType);
@@ -29,6 +28,10 @@ public class DataTypeTest
 
         // char
         dataType = DataType.fromClass(Character.TYPE);
+        assertEquals(DataType.TEXT, dataType);
+
+        // Enum
+        dataType = DataType.fromClass(DataType.class);
         assertEquals(DataType.TEXT, dataType);
 
         // Integer
@@ -45,6 +48,14 @@ public class DataTypeTest
 
         // boolean
         dataType = DataType.fromClass(Boolean.TYPE);
+        assertEquals(DataType.INTEGER, dataType);
+
+        // Short
+        dataType = DataType.fromClass(Short.class);
+        assertEquals(DataType.INTEGER, dataType);
+
+        // short
+        dataType = DataType.fromClass(Short.TYPE);
         assertEquals(DataType.INTEGER, dataType);
 
         // Float

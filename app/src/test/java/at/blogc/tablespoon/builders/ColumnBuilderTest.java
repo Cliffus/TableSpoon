@@ -107,6 +107,16 @@ public class ColumnBuilderTest
         assertEquals("native_character TEXT", sql);
 
 
+        // Enum
+        field = DataTypesTable.class.getField("enumm");
+        sqLiteObject = new ColumnBuilder(field).build();
+
+        sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("enumm TEXT", sql);
+
+
         // Integer
         field = DataTypesTable.class.getField("integer");
         sqLiteObject = new ColumnBuilder(field).build();
@@ -145,6 +155,25 @@ public class ColumnBuilderTest
         System.out.println("SQL: " + sql);
 
         assertEquals("native_boolean INTEGER", sql);
+
+        // Short
+        field = DataTypesTable.class.getField("shortt");
+        sqLiteObject = new ColumnBuilder(field).build();
+
+        sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("shortt INTEGER", sql);
+
+
+        // short
+        field = DataTypesTable.class.getField("nativeShort");
+        sqLiteObject = new ColumnBuilder(field).build();
+
+        sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("native_short INTEGER", sql);
 
 
         // Float

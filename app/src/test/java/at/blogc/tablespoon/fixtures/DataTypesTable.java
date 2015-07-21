@@ -2,6 +2,8 @@ package at.blogc.tablespoon.fixtures;
 
 import java.io.File;
 
+import at.blogc.tablespoon.core.DataType;
+
 /**
  * Created by cliff on 21/07/15.
  */
@@ -11,10 +13,13 @@ public class DataTypesTable
     public CharSequence charSequence;
     public Character character;
     public char nativeCharacter;
+    public DataType enumm;
     public Integer integer;
     public int nativeInteger;
     public Boolean booleann;
     public boolean nativeBoolean;
+    public Short shortt;
+    public short nativeShort;
     public Float floatt;
     public float nativeFloat;
     public Double doublee;
