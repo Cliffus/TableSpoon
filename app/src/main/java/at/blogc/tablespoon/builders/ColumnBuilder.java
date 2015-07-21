@@ -7,6 +7,7 @@ import at.blogc.tablespoon.annotations.ColumnName;
 import at.blogc.tablespoon.annotations.PrimaryKey;
 import at.blogc.tablespoon.core.Column;
 import at.blogc.tablespoon.core.DataType;
+import at.blogc.tablespoon.utils.Sanitize;
 import at.blogc.tablespoon.utils.TextUtils;
 
 /**
@@ -38,7 +39,7 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
             }
         }
 
-        return this.column.getName();
+        return Sanitize.columnName(this.column);
     }
 
     private DataType getDataType()
@@ -75,6 +76,11 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
     @Override
     public Column build() throws IllegalStateException
     {
+        if (this.column == null)
+        {
+            throw new IllegalStateException("column cannot be null.");
+        }
+
         final String columnName = this.getColumnName();
         final DataType dataType = this.getDataType();
         final boolean isPrimaryKey = this.isPrimaryKey();
