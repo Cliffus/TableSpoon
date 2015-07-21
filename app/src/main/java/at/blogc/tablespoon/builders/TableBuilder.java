@@ -85,6 +85,11 @@ public class TableBuilder implements SQLiteObjectBuilder<Table>
         final boolean ifNotExists = this.getIfNotExists();
         final Column[] columns = this.getColumns();
 
+        if (columns.length == 0)
+        {
+            throw new IllegalStateException("columns cannot be null or empty.");
+        }
+
         return new Table(tableName)
                 .setIfNotExists(ifNotExists)
                 .addColumns(columns);
