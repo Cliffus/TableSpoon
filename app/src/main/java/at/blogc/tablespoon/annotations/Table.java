@@ -13,7 +13,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target(TYPE)
 @Retention(RUNTIME)
-public @interface TableName
+public @interface Table
 {
-    String value();
+    String name() default "";
+    boolean ifNotExists() default false;
 }

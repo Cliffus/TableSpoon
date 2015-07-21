@@ -2,9 +2,9 @@ package at.blogc.tablespoon.fixtures;
 
 import at.blogc.tablespoon.annotations.ColumnName;
 import at.blogc.tablespoon.annotations.PrimaryKey;
-import at.blogc.tablespoon.annotations.TableName;
+import at.blogc.tablespoon.annotations.Table;
 
-@TableName("users")
+@Table(name = "users")
 public class UsersTableWithStaticFields
 {
     @PrimaryKey()

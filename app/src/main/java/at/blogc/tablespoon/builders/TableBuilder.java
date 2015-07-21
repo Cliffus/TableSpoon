@@ -6,11 +6,10 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import at.blogc.tablespoon.annotations.IfNotExists;
-import at.blogc.tablespoon.annotations.TableName;
 import at.blogc.tablespoon.core.Column;
 import at.blogc.tablespoon.core.Table;
 import at.blogc.tablespoon.utils.Sanitize;
+import at.blogc.tablespoon.utils.TextUtils;
 
 /**
  * Created by cliff on 12/07/15.
@@ -26,15 +25,29 @@ public class TableBuilder implements SQLiteObjectBuilder<Table>
         this.table = table;
     }
 
-    private String getTableName()
+    private at.blogc.tablespoon.annotations.Table findTableAnnotation()
     {
         final Annotation[] annotations = this.table.getDeclaredAnnotations();
         for (final Annotation annotation : annotations)
         {
-            if (annotation instanceof TableName)
+            if (annotation instanceof at.blogc.tablespoon.annotations.Table)
             {
-                final TableName tableAnnotation = (TableName) annotation;
-                return tableAnnotation.value();
+                return (at.blogc.tablespoon.annotations.Table) annotation;
+            }
+        }
+
+        return null;
+    }
+
+    private String getTableName()
+    {
+        final at.blogc.tablespoon.annotations.Table tableAnnotation = this.findTableAnnotation();
+        if (tableAnnotation != null)
+        {
+            final String tableName = tableAnnotation.name();
+            if (!TextUtils.isEmpty(tableName))
+            {
+                return tableName;
             }
         }
 
@@ -43,7 +56,8 @@ public class TableBuilder implements SQLiteObjectBuilder<Table>
 
     private boolean getIfNotExists()
     {
-        return this.table.isAnnotationPresent(IfNotExists.class);
+        final at.blogc.tablespoon.annotations.Table tableAnnotation = this.findTableAnnotation();
+        return tableAnnotation != null && tableAnnotation.ifNotExists();
     }
 
     private Column[] getColumns()

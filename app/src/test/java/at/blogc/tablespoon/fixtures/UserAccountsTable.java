@@ -1,9 +1,9 @@
 package at.blogc.tablespoon.fixtures;
 
-import at.blogc.tablespoon.annotations.IfNotExists;
 import at.blogc.tablespoon.annotations.PrimaryKey;
+import at.blogc.tablespoon.annotations.Table;
 
-@IfNotExists
+@Table(ifNotExists = true)
 public class UserAccountsTable
 {
     @PrimaryKey(autoIncrement = true)
