@@ -19,5 +19,5 @@ public @interface PrimaryKey
      * Enable or disable autoincrement, default = true.
      * @return
      */
-    boolean autoIncrement() default true;
+    boolean autoIncrement() default false;
 }
