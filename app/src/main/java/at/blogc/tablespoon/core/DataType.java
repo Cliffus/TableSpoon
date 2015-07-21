@@ -5,10 +5,10 @@ package at.blogc.tablespoon.core;
  */
 public enum DataType
 {
-    TEXT    (new Class[]{ String.class, CharSequence.class, Character.class }),
-    INTEGER (new Class[]{ Integer.class, Integer.TYPE, Boolean.class }),
-    REAL    (new Class[]{ Float.class, Double.class }),
-    NUMERIC (new Class[]{ Long.class }),
+    TEXT    (new Class[]{ String.class, CharSequence.class, Character.class, Character.TYPE }),
+    INTEGER (new Class[]{ Integer.class, Integer.TYPE, Boolean.class, Boolean.TYPE }),
+    REAL    (new Class[]{ Float.class, Float.TYPE, Double.class, Double.TYPE }),
+    NUMERIC (new Class[]{ Long.class, Long.TYPE }),
     NONE;
 
     final Class[] clazz;
