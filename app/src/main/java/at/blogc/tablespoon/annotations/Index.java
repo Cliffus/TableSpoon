@@ -16,4 +16,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface Index
 {
     String value() default "";
+    boolean unique() default false;
 }
