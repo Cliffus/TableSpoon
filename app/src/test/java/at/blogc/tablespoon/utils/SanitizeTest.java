@@ -7,8 +7,6 @@ import java.lang.reflect.Field;
 import at.blogc.tablespoon.fixtures.UserAccountsTable;
 import at.blogc.tablespoon.fixtures.UsersTable;
 import at.blogc.tablespoon.fixtures.UsersTableWithInvalidPrimaryKey;
-import at.blogc.tablespoon.fixtures.UsersTableWithStaticFields;
-import at.blogc.tablespoon.utils.Sanitize;
 
 import static org.junit.Assert.assertEquals;
 

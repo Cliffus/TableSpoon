@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import at.blogc.tablespoon.fixtures.UserAccountsTable;
 import at.blogc.tablespoon.fixtures.UsersTable;
-import at.blogc.tablespoon.utils.StringUtils;
 
 import static org.junit.Assert.assertEquals;
 

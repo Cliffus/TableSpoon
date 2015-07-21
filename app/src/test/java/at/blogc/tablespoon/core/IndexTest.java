@@ -2,7 +2,6 @@ package at.blogc.tablespoon.core;
 
 import org.junit.Test;
 
-import at.blogc.tablespoon.core.Index;
 import static org.junit.Assert.assertEquals;
 
 public class IndexTest

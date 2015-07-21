@@ -2,10 +2,6 @@ package at.blogc.tablespoon.core;
 
 import org.junit.Test;
 
-import at.blogc.tablespoon.core.Column;
-import at.blogc.tablespoon.core.DataType;
-import at.blogc.tablespoon.core.Table;
-
 import static org.junit.Assert.assertEquals;
 
 
