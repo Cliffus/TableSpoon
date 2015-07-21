@@ -1,8 +1,7 @@
-package at.blogc.tablespoon.test.tables;
+package at.blogc.tablespoon.fixtures;
 
 import at.blogc.tablespoon.annotations.ColumnName;
 import at.blogc.tablespoon.annotations.IfNotExists;
-import at.blogc.tablespoon.annotations.Index;
 import at.blogc.tablespoon.annotations.PrimaryKey;
 import at.blogc.tablespoon.annotations.TableName;
 
@@ -11,19 +10,18 @@ import at.blogc.tablespoon.annotations.TableName;
 public class UsersTable
 {
     @PrimaryKey(autoIncrement = true)
-    private int id;
+    public int id;
 
-    @Index("idx_users_name")
-    private String name;
+    public String name;
 
     @ColumnName("street")
-    private String address;
+    public String address;
 
-    private Long timestamp;
+    public Long timestamp;
 
-    private Float floatValue;
+    public Float floatValue;
 
-    private Double doubleValue;
+    public Double doubleValue;
 
-    private Integer integerValue;
+    public Integer integerValue;
 }

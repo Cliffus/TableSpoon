@@ -1,4 +1,4 @@
-package at.blogc.tablespoon.test;
+package at.blogc.tablespoon.core;
 
 import org.junit.Test;
 

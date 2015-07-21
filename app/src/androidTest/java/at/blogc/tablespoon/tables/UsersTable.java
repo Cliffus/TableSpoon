@@ -1,4 +1,4 @@
-package at.blogc.tablespoon.tables;
+package at.blogc.tablespoon.fixtures;
 
 import at.blogc.tablespoon.annotations.ColumnName;
 import at.blogc.tablespoon.annotations.IfNotExists;

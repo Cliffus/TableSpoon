@@ -4,7 +4,7 @@ import android.app.Application;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.test.ApplicationTestCase;
 
-import at.blogc.tablespoon.tables.UsersTable;
+import at.blogc.tablespoon.fixtures.UsersTable;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>

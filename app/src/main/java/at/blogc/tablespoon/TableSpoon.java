@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import at.blogc.tablespoon.core.SQLiteObject;
 import at.blogc.tablespoon.builders.TableBuilder;
+import at.blogc.tablespoon.core.SQLiteObject;
 import at.blogc.tablespoon.utils.Log;
 import at.blogc.tablespoon.utils.Utils;
 

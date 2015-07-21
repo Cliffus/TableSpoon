@@ -1,4 +1,4 @@
-package at.blogc.tablespoon.test;
+package at.blogc.tablespoon.core;
 
 import org.junit.Test;
 
@@ -47,5 +47,23 @@ public class IndexTest
         System.out.println("SQL: " + sql);
 
         assertEquals("CREATE UNIQUE INDEX IF NOT EXISTS idx_test_column1_column2_column3 ON test (column1, column2, column3);", sql);
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testIndexWithoutTableName()
+    {
+        final Index index = new Index()
+                .setColumns("column1", "column2", "column3");
+
+        index.generateSQL();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testIndexWithoutColumns()
+    {
+        final Index index = new Index()
+                .setTableName("test");
+
+        index.generateSQL();
     }
 }
