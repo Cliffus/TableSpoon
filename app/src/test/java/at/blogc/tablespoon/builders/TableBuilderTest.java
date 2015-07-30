@@ -8,6 +8,8 @@ import at.blogc.tablespoon.fixtures.TableWithoutColumns;
 import at.blogc.tablespoon.fixtures.UserAccountsTable;
 import at.blogc.tablespoon.fixtures.UsersTable;
 import at.blogc.tablespoon.fixtures.UsersTableWithStaticFields;
+import at.blogc.tablespoon.fixtures.UsersTableWithTransientField;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -52,6 +54,17 @@ public class TableBuilderTest
     public void testTableBuilderWithStaticClass()
     {
         final SQLiteObject sqLiteObject = new TableBuilder(StaticUsersTable.UsersTable.class).build();
+
+        final String sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, street TEXT, timestamp NUMERIC, float_value REAL, double_value REAL, integer_value INTEGER);", sql);
+    }
+
+    @Test
+    public void testTableBuilderWithTransientField()
+    {
+        final SQLiteObject sqLiteObject = new TableBuilder(UsersTableWithTransientField.class).build();
 
         final String sql = sqLiteObject.generateSQL();
         System.out.println("SQL: " + sql);
