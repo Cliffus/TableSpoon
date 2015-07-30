@@ -1,12 +1,11 @@
 package at.blogc.tablespoon.builders;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import at.blogc.tablespoon.annotations.ColumnName;
 import at.blogc.tablespoon.annotations.PrimaryKey;
 import at.blogc.tablespoon.core.Column;
 import at.blogc.tablespoon.core.DataType;
+import at.blogc.tablespoon.utils.AnnotationUtils;
 import at.blogc.tablespoon.utils.Sanitize;
 import at.blogc.tablespoon.utils.TextUtils;
 
@@ -24,18 +23,25 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
         this.column = column;
     }
 
+    private at.blogc.tablespoon.annotations.Column findColumnAnnotation()
+    {
+        return AnnotationUtils.findAnnotation(this.column, at.blogc.tablespoon.annotations.Column.class);
+    }
+
+    private PrimaryKey findPrimaryKeyAnnotation()
+    {
+        return AnnotationUtils.findAnnotation(this.column, PrimaryKey.class);
+    }
+
     private String getColumnName()
     {
-        final Annotation[] annotations = this.column.getDeclaredAnnotations();
-        for (final Annotation annotation : annotations)
+        final at.blogc.tablespoon.annotations.Column columnAnnotation = this.findColumnAnnotation();
+        if (columnAnnotation != null)
         {
-            if (annotation instanceof ColumnName)
+            final String columnName = columnAnnotation.name();
+            if (!TextUtils.isEmpty(columnName))
             {
-                final ColumnName columnName = (ColumnName) annotation;
-                if (!TextUtils.isEmpty(columnName.value()))
-                {
-                    return columnName.value();
-                }
+                return columnName;
             }
         }
 
@@ -45,25 +51,20 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
     private DataType getDataType()
     {
         final Class clazz = this.column.getType();
-
         return DataType.fromClass(clazz);
     }
 
     private boolean isPrimaryKey()
     {
-        return this.column.isAnnotationPresent(PrimaryKey.class);
+        return this.findPrimaryKeyAnnotation() != null;
     }
 
     private boolean isAutoIncrement()
     {
-        final Annotation[] annotations = this.column.getDeclaredAnnotations();
-        for (final Annotation annotation : annotations)
+        final PrimaryKey primaryKey = this.findPrimaryKeyAnnotation();
+        if (primaryKey != null)
         {
-            if (annotation instanceof PrimaryKey)
-            {
-                final PrimaryKey primaryKey = (PrimaryKey) annotation;
-                return primaryKey.autoIncrement();
-            }
+            return primaryKey.autoIncrement();
         }
 
         return false;

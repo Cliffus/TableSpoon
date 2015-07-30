@@ -1,6 +1,5 @@
 package at.blogc.tablespoon.builders;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.List;
 
 import at.blogc.tablespoon.core.Column;
 import at.blogc.tablespoon.core.Table;
+import at.blogc.tablespoon.utils.AnnotationUtils;
 import at.blogc.tablespoon.utils.Sanitize;
 import at.blogc.tablespoon.utils.TextUtils;
 
@@ -27,16 +27,7 @@ public class TableBuilder implements SQLiteObjectBuilder<Table>
 
     private at.blogc.tablespoon.annotations.Table findTableAnnotation()
     {
-        final Annotation[] annotations = this.table.getDeclaredAnnotations();
-        for (final Annotation annotation : annotations)
-        {
-            if (annotation instanceof at.blogc.tablespoon.annotations.Table)
-            {
-                return (at.blogc.tablespoon.annotations.Table) annotation;
-            }
-        }
-
-        return null;
+        return AnnotationUtils.findAnnotation(this.table, at.blogc.tablespoon.annotations.Table.class);
     }
 
     private String getTableName()

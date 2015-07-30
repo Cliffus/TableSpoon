@@ -1,6 +1,6 @@
 package at.blogc.tablespoon.fixtures;
 
-import at.blogc.tablespoon.annotations.ColumnName;
+import at.blogc.tablespoon.annotations.Column;
 import at.blogc.tablespoon.annotations.PrimaryKey;
 import at.blogc.tablespoon.annotations.Table;
 
@@ -14,7 +14,7 @@ public class StaticUsersTable
 
         public String name;
 
-        @ColumnName("street")
+        @Column(name = "street")
         public String address;
 
         public Long timestamp;

@@ -1,6 +1,6 @@
 package at.blogc.tablespoon.fixtures;
 
-import at.blogc.tablespoon.annotations.ColumnName;
+import at.blogc.tablespoon.annotations.Column;
 import at.blogc.tablespoon.annotations.PrimaryKey;
 import at.blogc.tablespoon.annotations.Table;
 
@@ -10,16 +10,16 @@ public class UsersTableWithStaticFields
     @PrimaryKey()
     public static int id;
 
-    @ColumnName("name")
+    @Column(name = "name")
     public static String COLUMN_NAME;
-    @ColumnName("address")
+    @Column(name = "address")
     public static String COLUMN_ADDRESS;
-    @ColumnName("timestamp")
+    @Column(name = "timestamp")
     public static Long COLUMN_TIMESTAMP;
-    @ColumnName("floatValue")
+    @Column(name = "floatValue")
     public static Float COLUMN_FLOAT_VALUE;
-    @ColumnName("doubleValue")
+    @Column(name = "doubleValue")
     public static Double COLUMN_DOUBLE_VALUE;
-    @ColumnName("integerValue")
+    @Column(name = "integerValue")
     public static Integer COLUMN_INTEGER_VALUE;
 }
