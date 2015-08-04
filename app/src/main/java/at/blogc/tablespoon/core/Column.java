@@ -8,7 +8,6 @@ import at.blogc.tablespoon.utils.TextUtils;
 public class Column implements SQLiteObject
 {
     //TODO default value
-    //TODO unique
     //TODO not null
     //TODO CHECK (my_id BETWEEN 0 AND 100)
 
@@ -16,6 +15,7 @@ public class Column implements SQLiteObject
     private DataType dataType;
     private boolean primaryKey;
     private boolean autoIncrement;
+    private boolean unique;
 
     public Column(final String columnName)
     {
@@ -40,6 +40,13 @@ public class Column implements SQLiteObject
         return this;
     }
 
+    public Column setUnique(final boolean unique)
+    {
+        this.unique = unique;
+
+        return this;
+    }
+
     public String getColumnName()
     {
         return columnName;
@@ -58,6 +65,11 @@ public class Column implements SQLiteObject
     public boolean isAutoIncrement()
     {
         return autoIncrement;
+    }
+
+    public boolean isUnique()
+    {
+        return unique;
     }
 
     /*
@@ -91,6 +103,12 @@ public class Column implements SQLiteObject
 
         // DATA TYPE
         stringBuilder.append(this.dataType.name());
+
+        // UNIQUE
+        if (!this.primaryKey && this.unique)
+        {
+            stringBuilder.append(" UNIQUE");
+        }
 
         // PRIMARY KEY
         if (this.primaryKey)

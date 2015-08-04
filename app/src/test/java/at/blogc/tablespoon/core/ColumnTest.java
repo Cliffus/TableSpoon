@@ -104,4 +104,17 @@ public class ColumnTest
 
         column8.generateSQL();
     }
+
+    @Test
+    public void testUniqueColumn()
+    {
+        final Column column9 = new Column("column9")
+                .setDataType(DataType.INTEGER)
+                .setUnique(true);
+
+        final String sql = column9.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("column9 INTEGER UNIQUE", sql);
+    }
 }

@@ -48,6 +48,17 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
         return Sanitize.columnName(this.column);
     }
 
+    private boolean isUnique()
+    {
+        final at.blogc.tablespoon.annotations.Column columnAnnotation = this.findColumnAnnotation();
+        if (columnAnnotation != null)
+        {
+            return columnAnnotation.unique();
+        }
+
+        return false;
+    }
+
     private DataType getDataType()
     {
         final Class clazz = this.column.getType();
@@ -86,9 +97,11 @@ public class ColumnBuilder implements SQLiteObjectBuilder<Column>
         final DataType dataType = this.getDataType();
         final boolean isPrimaryKey = this.isPrimaryKey();
         final boolean isAutoIncrement = isPrimaryKey && this.isAutoIncrement();
+        final boolean unique = this.isUnique();
 
         return new Column(columnName)
                 .setDataType(dataType)
-                .setPrimaryKey(isPrimaryKey, isAutoIncrement);
+                .setPrimaryKey(isPrimaryKey, isAutoIncrement)
+                .setUnique(unique);
     }
 }

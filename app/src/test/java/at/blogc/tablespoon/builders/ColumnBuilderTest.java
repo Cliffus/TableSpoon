@@ -8,6 +8,7 @@ import at.blogc.tablespoon.core.SQLiteObject;
 import at.blogc.tablespoon.fixtures.DataTypesTable;
 import at.blogc.tablespoon.fixtures.UsersTable;
 import at.blogc.tablespoon.fixtures.UsersTableWithStaticFields;
+import at.blogc.tablespoon.fixtures.UsersTableWithUniqueColumn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -62,6 +63,18 @@ public class ColumnBuilderTest
         System.out.println("SQL: " + sql);
 
         assertEquals("id INTEGER PRIMARY KEY AUTOINCREMENT", sql);
+    }
+
+    @Test
+    public void testColumnBuilderWithUniqueColumn() throws NoSuchFieldException
+    {
+        final Field field = UsersTableWithUniqueColumn.class.getField("name");
+        final SQLiteObject sqLiteObject = new ColumnBuilder(field).build();
+
+        final String sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("name TEXT UNIQUE", sql);
     }
 
     @Test
