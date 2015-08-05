@@ -8,14 +8,15 @@ import at.blogc.tablespoon.utils.TextUtils;
 public class Column implements SQLiteObject
 {
     //TODO default value
-    //TODO not null
     //TODO CHECK (my_id BETWEEN 0 AND 100)
+    // TODO foreign key
 
     private final String columnName;
     private DataType dataType;
     private boolean primaryKey;
     private boolean autoIncrement;
     private boolean unique;
+    private boolean notNull;
 
     public Column(final String columnName)
     {
@@ -47,6 +48,13 @@ public class Column implements SQLiteObject
         return this;
     }
 
+    public Column setNotNull(final boolean notNull)
+    {
+        this.notNull = notNull;
+
+        return this;
+    }
+
     public String getColumnName()
     {
         return columnName;
@@ -70,6 +78,11 @@ public class Column implements SQLiteObject
     public boolean isUnique()
     {
         return unique;
+    }
+
+    public boolean isNotNull()
+    {
+        return notNull;
     }
 
     /*
@@ -108,6 +121,12 @@ public class Column implements SQLiteObject
         if (!this.primaryKey && this.unique)
         {
             stringBuilder.append(" UNIQUE");
+        }
+
+        // NOT NULL
+        if (this.notNull)
+        {
+            stringBuilder.append(" NOT NULL");
         }
 
         // PRIMARY KEY

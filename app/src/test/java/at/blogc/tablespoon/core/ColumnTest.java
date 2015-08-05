@@ -117,4 +117,17 @@ public class ColumnTest
 
         assertEquals("column9 INTEGER UNIQUE", sql);
     }
+
+    @Test
+    public void testNotNullColumn()
+    {
+        final Column column10 = new Column("column10")
+                .setDataType(DataType.INTEGER)
+                .setNotNull(true);
+
+        final String sql = column10.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("column10 INTEGER NOT NULL", sql);
+    }
 }

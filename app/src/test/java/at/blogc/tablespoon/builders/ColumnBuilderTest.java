@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import at.blogc.tablespoon.core.SQLiteObject;
 import at.blogc.tablespoon.fixtures.DataTypesTable;
 import at.blogc.tablespoon.fixtures.UsersTable;
+import at.blogc.tablespoon.fixtures.UsersTableWithNotNullColumn;
 import at.blogc.tablespoon.fixtures.UsersTableWithStaticFields;
 import at.blogc.tablespoon.fixtures.UsersTableWithUniqueColumn;
 
@@ -75,6 +76,18 @@ public class ColumnBuilderTest
         System.out.println("SQL: " + sql);
 
         assertEquals("name TEXT UNIQUE", sql);
+    }
+
+    @Test
+    public void testColumnBuilderWithNotNullColumn() throws NoSuchFieldException
+    {
+        final Field field = UsersTableWithNotNullColumn.class.getField("name");
+        final SQLiteObject sqLiteObject = new ColumnBuilder(field).build();
+
+        final String sql = sqLiteObject.generateSQL();
+        System.out.println("SQL: " + sql);
+
+        assertEquals("name TEXT NOT NULL", sql);
     }
 
     @Test
